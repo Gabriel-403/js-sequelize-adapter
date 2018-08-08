@@ -1,0 +1,22 @@
+{
+  "name": "sequelize-adapter",
+  "version": "1.0.0",
+  "description": "Sequelize Adapter [![Build Status](https://travis-ci.org/casbin/sequelize-adapter.svg?branch=master)](https://travis-ci.org/casbin/sequelize-adapter) [![Coverage Status](https://coveralls.io/repos/github/casbin/sequelize-adapter/badge.svg?branch=master)](https://coveralls.io/github/casbin/sequelize-adapter?branch=master) [![Godoc](https://godoc.org/github.com/casbin/sequelize-adapter?status.svg)](https://godoc.org/github.com/casbin/sequelize-adapter) ====",
+  "main": "lockfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/node-casbin/sequelize-adapter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/node-casbin/sequelize-adapter/issues"
+  },
+  "homepage": "https://github.com/node-casbin/sequelize-adapter#readme",
+  "dependencies": {
+    "sequelize": "^4.38.0"
+  }
+}
