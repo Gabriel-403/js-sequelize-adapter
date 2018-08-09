@@ -1,1 +1,1 @@
-export * from './lib/adapter'
+module.exports = require('./lib/adapter')
