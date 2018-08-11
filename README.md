@@ -26,11 +26,10 @@ module.exports = () => {
 	// Initialize a Sequelize adapter and use it in a Casbin enforcer:
 	// The adapter will use the MySQL database named "casbin".
 	// If it doesn't exist, the adapter will create it automatically.
+	
 	const adapter = new Adapter('database', 'username', 'password', {host: 'localhost', dialect: 'mysql', port: 3306}) // Your driver and data source. 
-  await adapter.init() // init your db connection and table
-  const enforcer = new Enforcer('rbac_model.conf', adapter)
-	const enforcer = new Enforcer('examples/rbac_model.conf', adapter)
-  await enforcer.initialize() // init enforcer policy
+	await adapter.init() // init your db connection and table
+	const enforcer = await Enforcer.newEnforcer('rbac_model.conf', adapter)
 	
 	// Or you can use an existing DB "abc" like this:
 	// The adapter will use the table named "casbin_rule".
