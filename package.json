@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/node-casbin/sequelize-adapter#readme",
   "dependencies": {
-    "casbin": "^1.0.5",
+    "casbin": "^1.0.7",
     "mysql2": "^1.6.1",
     "sequelize": "^4.38.0"
   },
