@@ -13,19 +13,19 @@
 // limitations under the License.
 
 const Adapter = require('../lib/adapter')
-const enforcer = require('casbin')
+const casbin = require('casbin')
 
 function testGetPolicy (e, res) {
   myRes = e.getPolicy()
-  enforcer.Util.logPrint("Policy: " + myRes)
+  casbin.Util.logPrint("Policy: " + myRes)
 
-  expect(enforcer.Util.array2DEquals(res, myRes)).toBe(true)
+  expect(casbin.Util.array2DEquals(res, myRes)).toBe(true)
 }
 
 test('TestAdapter', async () => {
   // Because the DB is empty at first,
   // so we need to load the policy from the file adapter (.CSV) first.
-  let e = await enforcer.Enforcer.newEnforcer('examples/rbac_model.conf', 'examples/rbac_policy.csv')
+  let e = await casbin.Enforcer.newEnforcer('examples/rbac_model.conf', 'examples/rbac_policy.csv')
 
   let a = await new Adapter('casbin', 'root', '', {host: 'localhost', port: 3306, dialect: 'mysql'})
   // This is a trick to save the current policy to the DB.
@@ -52,7 +52,7 @@ test('TestAdapter', async () => {
   // Create an adapter and an enforcer.
   // newEnforcer() will load the policy automatically.
   a = await new Adapter('casbin', 'root', '', {host: 'localhost', port: 3306, dialect: 'mysql'})
-  e = await enforcer.Enforcer.newEnforcer('examples/rbac_model.conf', a)
+  e = await casbin.Enforcer.newEnforcer('examples/rbac_model.conf', a)
   testGetPolicy(e, [
     ['alice', 'data1', 'read'],
     ['bob', 'data2', 'write'],
