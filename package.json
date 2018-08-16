@@ -1,15 +1,23 @@
 {
   "name": "sequelize-adapter",
   "version": "1.0.0",
-  "description": "Sequelize Adapter [![Build Status](https://travis-ci.org/casbin/sequelize-adapter.svg?branch=master)](https://travis-ci.org/casbin/sequelize-adapter) [![Coverage Status](https://coveralls.io/repos/github/casbin/sequelize-adapter/badge.svg?branch=master)](https://coveralls.io/github/casbin/sequelize-adapter?branch=master) [![Godoc](https://godoc.org/github.com/casbin/sequelize-adapter?status.svg)](https://godoc.org/github.com/casbin/sequelize-adapter) ====",
-  "main": "lockfile.js",
+  "description": "Sequelize adapter for Casbin (node-casbin)",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/node-casbin/sequelize-adapter.git"
+    "url": "https://github.com/node-casbin/sequelize-adapter.git"
   },
+  "keywords": [
+    "node-casbin",
+    "adapter",
+    "sequelize",
+    "access-control",
+    "authorization",
+    "orm"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -18,20 +26,9 @@
   "homepage": "https://github.com/node-casbin/sequelize-adapter#readme",
   "dependencies": {
     "casbin": "^1.0.7",
-    "mysql2": "^1.6.1",
     "sequelize": "^4.38.0"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^3.19.0",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-config-vue": "^2.0.2",
-    "eslint-friendly-formatter": "^2.0.7",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-html": "^2.0.3",
-    "eslint-plugin-promise": "^3.8.0",
-    "eslint-plugin-standard": "^2.3.1",
-    "eslint-plugin-vue": "^4.7.1",
-    "nodemon": "^1.18.3"
+    "mysql2": "^1.6.1"
   }
 }
