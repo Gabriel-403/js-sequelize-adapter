@@ -16,6 +16,10 @@ const Adapter = require('../lib/adapter')
 const enforcer = require('casbin')
 
 function testGetPolicy (e, res) {
+  myRes = e.getPolicy()
+  enforcer.Util.logPrint("Policy: " + myRes)
+
+  expect(enforcer.Util.array2DEquals(res, myRes)).toBe(true)
 }
 
 test('TestAdapter', async () => {
