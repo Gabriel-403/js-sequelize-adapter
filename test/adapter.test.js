@@ -13,32 +13,36 @@
 // limitations under the License.
 
 const Adapter = require('../lib/adapter')
-const casbin = require('casbin')
+const { Util, Enforcer } = require('casbin')
+
+function array2DEquals(a, b) {
+  return require('lodash').isEqual(a, b);
+}
 
 function testGetPolicy (e, res) {
   myRes = e.getPolicy()
-  casbin.Util.logPrint("Policy: " + myRes)
+  Util.logPrint("Policy: " + myRes)
 
-  expect(casbin.Util.array2DEquals(res, myRes)).toBe(true)
+  expect(array2DEquals(res.sort(), myRes.sort())).toBe(true)
 }
 
 test('TestAdapter', async () => {
   // Because the DB is empty at first,
   // so we need to load the policy from the file adapter (.CSV) first.
-  let e = await casbin.Enforcer.newEnforcer('examples/rbac_model.conf', 'examples/rbac_policy.csv')
-
-  let a = await new Adapter('casbin', 'root', '', {host: 'localhost', port: 3306, dialect: 'mysql'})
+  let e = await Enforcer.newEnforcer('examples/rbac_model.conf', 'examples/rbac_policy.csv')
+  a = await new Adapter('chalin', 'root', '123456', {host: 'localhost', port: 3306, dialect: 'mysql'})
+  await a.init()
   // This is a trick to save the current policy to the DB.
   // We can't call e.savePolicy() because the adapter in the enforcer is still the file adapter.
   // The current policy means the policy in the Node-Casbin enforcer (aka in memory).
-  a.savePolicy(e.getModel())
+  await a.savePolicy(e.getModel())
 
   // Clear the current policy.
-  e.clearPolicy()
-  testGetPolicy(e, '')
+  await e.clearPolicy()
+  testGetPolicy(e, [])
 
   // Load the policy from DB.
-  a.loadPolicy(e.getModel())
+  await a.loadPolicy(e.getModel())
   testGetPolicy(e, [
     ['alice', 'data1', 'read'],
     ['bob', 'data2', 'write'],
@@ -51,8 +55,9 @@ test('TestAdapter', async () => {
   // Now the DB has policy, so we can provide a normal use case.
   // Create an adapter and an enforcer.
   // newEnforcer() will load the policy automatically.
-  a = await new Adapter('casbin', 'root', '', {host: 'localhost', port: 3306, dialect: 'mysql'})
-  e = await casbin.Enforcer.newEnforcer('examples/rbac_model.conf', a)
+  a = await new Adapter('chalin', 'root', '123456', {host: 'localhost', port: 3306, dialect: 'mysql'})
+  await a.init()
+  e = await Enforcer.newEnforcer('examples/rbac_model.conf', a)
   testGetPolicy(e, [
     ['alice', 'data1', 'read'],
     ['bob', 'data2', 'write'],
