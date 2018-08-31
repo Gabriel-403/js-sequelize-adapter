@@ -15,22 +15,18 @@
 const Adapter = require('../lib/adapter')
 const { Util, Enforcer } = require('casbin')
 
-function array2DEquals(a, b) {
-  return require('lodash').isEqual(a, b);
-}
-
 function testGetPolicy (e, res) {
-  myRes = e.getPolicy()
-  Util.logPrint("Policy: " + myRes)
+  const myRes = e.getPolicy()
+  Util.logPrint('Policy: ' + myRes)
 
-  expect(array2DEquals(res.sort(), myRes.sort())).toBe(true)
+  expect(Util.array2DEquals(res.sort(), myRes.sort())).toBe(true)
 }
 
 test('TestAdapter', async () => {
   // Because the DB is empty at first,
   // so we need to load the policy from the file adapter (.CSV) first.
   let e = await Enforcer.newEnforcer('examples/rbac_model.conf', 'examples/rbac_policy.csv')
-  a = await new Adapter('chalin', 'root', '123456', {host: 'localhost', port: 3306, dialect: 'mysql'})
+  let a = await new Adapter('chalin', 'root', '123456', {host: 'localhost', port: 3306, dialect: 'mysql'})
   await a.init()
   // This is a trick to save the current policy to the DB.
   // We can't call e.savePolicy() because the adapter in the enforcer is still the file adapter.
