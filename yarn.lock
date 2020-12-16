@@ -473,9 +473,9 @@ cardinal@2.1.1:
     ansicolors "~0.3.2"
     redeyed "~2.1.0"
 
-casbin@^1.1.0:
-  version "1.1.0"
-  resolved "http://registry.npm.taobao.org/casbin/download/casbin-1.1.0.tgz#0294b80c9863ffa6689019d80090e9f7206394d9"
+casbin@^1.1.2:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/casbin/-/casbin-1.1.9.tgz#81f1344a17bb3c69429f635220cf3a5ae6cb8623"
   dependencies:
     coveralls "^3.0.2"
     expression-eval "^1.3.0"
@@ -1982,9 +1982,9 @@ lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "http://registry.npm.taobao.org/lodash.sortby/download/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
 
-lodash@^4.13.1, lodash@^4.17.1, lodash@^4.17.10, lodash@^4.17.4:
-  version "4.17.10"
-  resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
+lodash@^4.13.1, lodash@^4.17.1, lodash@^4.17.10, lodash@^4.17.19, lodash@^4.17.4:
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
 
 log-driver@^1.2.7:
   version "1.2.7"
